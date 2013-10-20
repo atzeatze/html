@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>my own stuff</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/meins.css" rel="stylesheet" media="screen">
+
+<script type="text/javascript" src="dhtml.js"></script>
+
+<script type="text/javascript">
+	function ZeitAnzeigenServer() {
+		var Jetzt = new Date(<?php time(); ?>);
+		var Tag = Jetzt.getDate();
+		var Monat = Jetzt.getMonth() + 1;
+		var Jahr = Jetzt.getYear();
+		if (Jahr < 999)
+			Jahr += 1900;
+		var Stunden = Jetzt.getHours();
+		var Minuten = Jetzt.getMinutes();
+		var Sekunden = Jetzt.getSeconds();
+		var Vortag = (Tag < 10) ? "0" : "";
+		var Vormon = (Monat < 10) ? ".0" : ".";
+		var Vorstd = (Stunden < 10) ? "0" : "";
+		var Vormin = (Minuten < 10) ? ":0" : ":";
+		var Vorsek = (Sekunden < 10) ? ":0" : ":";
+		var Datum = Vortag + Tag + Vormon + Monat + "." + Jahr;
+		var Uhrzeit = Vorstd + Stunden + Vormin + Minuten + Vorsek + Sekunden + " Uhr";
+		var Gesamt = "Serverzeit " + Datum + " - " + Uhrzeit;
+		if (DHTML) {
+			if (NS4) {
+				setContent("id", "Uhr2", null, '<span class="Uhr">' + Gesamt	+ "<\/span>");
+			} else {
+				setContent("id", "Uhr2", null, Gesamt);
+			}
+			window.setTimeout("ZeitAnzeigenServer()", 100);
+		}
+	}
+</script><script type="text/javascript">
+	function ZeitAnzeigenLokal() {
+		var Jetzt = new Date();
+		var Tag = Jetzt.getDate();
+		var Monat = Jetzt.getMonth() + 1;
+		var Jahr = Jetzt.getYear();
+		if (Jahr < 999)
+			Jahr += 1900;
+		var Stunden = Jetzt.getHours();
+		var Minuten = Jetzt.getMinutes();
+		var Sekunden = Jetzt.getSeconds();
+		var Vortag = (Tag < 10) ? "0" : "";
+		var Vormon = (Monat < 10) ? ".0" : ".";
+		var Vorstd = (Stunden < 10) ? "0" : "";
+		var Vormin = (Minuten < 10) ? ":0" : ":";
+		var Vorsek = (Sekunden < 10) ? ":0" : ":";
+		var Datum = Vortag + Tag + Vormon + Monat + "." + Jahr;
+		var Uhrzeit = Vorstd + Stunden + Vormin + Minuten + Vorsek + Sekunden + " Uhr";
+		var Gesamt = "Lokalzeit " + Datum + " - " + Uhrzeit;
+		if (DHTML) {
+			if (NS4) {
+				setContent("id", "Uhr", null, '<span class="Uhr">' + Gesamt	+ "<\/span>");
+			} else {
+				setContent("id", "Uhr", null, Gesamt);
+			}
+			window.setTimeout("ZeitAnzeigenLokal()", 100);
+		}
+	}
+</script>
+
+
+</head>
+
+<body onload="ZeitAnzeigenServer(); ZeitAnzeigenLokal();">
+
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	
+		
+	<div class="box">	
+		<div id="Uhr2" class="Uhr">&nbsp;</div>
+	</div>
+				
+	<div class="box2">
+		<div id="Uhr" class="Uhr">&nbsp;</div>
+	</div>
+				
+	
+</body>
+</html>

@@ -1,0 +1,23 @@
+body {
+	background-color: #1C1C1C;
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.box {
+	background-color: #fbd613;
+	border: 0px solid #e5e5e5;
+	margin-top: 100px;
+	padding: 20px;
+	text-align: center;
+	
+}
+
+.box2 {
+	background-color: #fa3200;
+	border: 0px solid #e5e5e5;
+	margin-top: 40px;
+	padding: 20px;
+	text-align: center;
+		
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>my own stuff</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    
+    
+    
+    <script type="text/javascript" src="dhtml.js"></script>
+<script type="text/javascript">
+function ZeitAnzeigen () {
+  var Wochentagname = new Array("Sonntag", "Montag", "Dienstag", "Mittwoch",
+                                "Donnerstag", "Freitag", "Samstag");
+  var Jetzt = new Date();
+  var Tag = Jetzt.getDate();
+  var Monat = Jetzt.getMonth() + 1;
+  var Jahr = Jetzt.getYear();
+  if (Jahr < 999)
+    Jahr += 1900;
+  var Stunden = Jetzt.getHours();
+  var Minuten = Jetzt.getMinutes();
+  var Sekunden = Jetzt.getSeconds();
+  
+  var Vortag = (Tag < 10) ? "0" : "";
+  var Vormon = (Monat < 10) ? ".0" : ".";
+  var Vorstd = (Stunden < 10) ? "0" : "";
+  var Vormin = (Minuten < 10) ? ":0" : ":";
+  var Vorsek = (Sekunden < 10) ? ":0" : ":";
+  var Datum = Vortag + Tag + Vormon + Monat + "." + Jahr;
+  var Uhrzeit = Vorstd + Stunden + Vormin + Minuten + Vorsek + Sekunden + " Uhr";
+  var Gesamt = Datum + " - " + Uhrzeit;
+
+  if (DHTML) {
+    if (NS4) {
+      setContent("id", "Uhr", null, '<span class="Uhr">' + Gesamt + "<\/span>");
+    } else {
+      setContent("id", "Uhr", null, Gesamt);
+    }
+    window.setTimeout("ZeitAnzeigen()", 1000);
+  }
+}
+
+</script>
+  </head>
+  
+  <body onload="ZeitAnzeigen()">
+  	<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  
+
+  	<h1>Hello, world!<br></h1>
+  
+ 	 <?php
+		$timestamp = time();
+		$datum = date("d.m.Y",$timestamp);
+		$uhrzeit = date("H:i:s",$timestamp);
+		echo 'Serverzeit (statisch):<br>',$datum," - ",$uhrzeit," Uhr";
+		?>
+		
+  	<br>---------------------------------------------<br>
+  	Lokalzeit (dynamisch):<br>
+  	<div id="Uhr" class="Uhr">&nbsp;</div>
+  	---------------------------------------------<br>
+  	
+  		<div class="row-fluid">
+  	  		<div class="span4">bla <b>bla</b></div>
+    		<div class="span8">...</div>
+   		</div>
+    
+    
+  
+    
+    
+   
+    
+  </body>
+</html>
